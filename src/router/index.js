@@ -1,10 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import edit from '../views/edit.vue'
 import App from "../App.vue"
+import cruds from "../cruds.vue"
 
 const routes = [
     {
-        path:'/',
+        path:'/ss',
         name:'App',
         component:App
     },
@@ -12,6 +13,11 @@ const routes = [
         path:'/edit',
         name:'edit',
         component:edit
+    },
+    {
+        path:'/',
+        name:'/cruds',
+        component:cruds
     }
 ]
 

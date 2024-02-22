@@ -2,24 +2,17 @@
   "Student": [
     {
       "id": "1",
-      "Name": "John Doe",
-      "Age": 25,
+      "Name": "Zaakaria",
+      "Age": 12,
       "Gender": "Male",
-      "School": "ABC University"
+      "School": "bfg"
     },
     {
       "id": "2",
-      "Name": "Jane Smith",
-      "Age": 22,
+      "Name": "fdfd",
+      "Age": 23,
       "Gender": "Female",
-      "School": "XYZ College"
-    },
-    {
-      "id": "3",
-      "Name": "Michael Johnson",
-      "Age": 20,
-      "Gender": "Male",
-      "School": "LMN Institute"
+      "School": "bfgb"
     }
   ]
 }

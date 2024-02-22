@@ -1,44 +1,49 @@
-<script setup>
-defineProps({
-  msg: {
-    type: String,
-    required: true
-  }
-})
-</script>
-
 <template>
-  <div class="greetings">
-    <h1 class="green">{{ msg }}</h1>
-    <h3>
-      You’ve successfully created a project with
-      <a href="https://vitejs.dev/" target="_blank" rel="noopener">Vite</a> +
-      <a href="https://vuejs.org/" target="_blank" rel="noopener">Vue 3</a>.
-    </h3>
-  </div>
+   <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">NAME</th>
+      <th scope="col">AGE</th>
+      <th scope="col">Gender</th>
+      <th scope="col">School</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+       <tr v-for="G_Student in Table" :key="G_Student.id">
+         <th scope="row">{{G_Student.id}}</th>
+         <td scope="row">{{G_Student.Name}}</td>
+         <td scope="row">{{G_Student.Age}}</td>
+         <td scope="row">{{G_Student.Gender}}</td>
+         <td scope="row">{{G_Student.School}}</td>
+         <td><button type="button"  class="btn btn-primary" :id="G_Student.id">Edit</button></td>
+         <td><button type="button"  class="btn btn-danger" @click="Delete(G_Student.id)">Delete</button></td>
+      </tr>
+  </tbody>
+</table>
 </template>
-
-<style scoped>
-h1 {
-  font-weight: 500;
-  font-size: 2.6rem;
-  position: relative;
-  top: -10px;
-}
-
-h3 {
-  font-size: 1.2rem;
-}
-
-.greetings h1,
-.greetings h3 {
-  text-align: center;
-}
-
-@media (min-width: 1024px) {
-  .greetings h1,
-  .greetings h3 {
-    text-align: left;
+<script>
+export default {
+  props:["Table"],
+  data(){
+    return {
+      url:"",
+    }
+  },
+  methods:{
+    Delete(id){
+      console.log("delete")
+      this.url=`http://localhost:3000/Student/${id}`
+      fetch(this.url,{method:'DELETE'})
+          .catch(error => console.log(error))
+          this.$emit('delete',id)
+      },
+      
+    }
   }
-}
+</script>
+<style>
+  
 </style>
