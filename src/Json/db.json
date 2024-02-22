@@ -1,0 +1,25 @@
+{
+  "Student": [
+    {
+      "id": "1",
+      "Name": "John Doe",
+      "Age": 25,
+      "Gender": "Male",
+      "School": "ABC University"
+    },
+    {
+      "id": "2",
+      "Name": "Jane Smith",
+      "Age": 22,
+      "Gender": "Female",
+      "School": "XYZ College"
+    },
+    {
+      "id": "3",
+      "Name": "Michael Johnson",
+      "Age": 20,
+      "Gender": "Male",
+      "School": "LMN Institute"
+    }
+  ]
+}
