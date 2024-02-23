@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-     <form @submit.prevent="AddStudent"> 
+     <form> 
        <div class="form-row">
          <div class="form-group col-md-6">
            <label for="inputEmail4">Name</label>
@@ -25,9 +25,10 @@
            </div>
          </div>
        </div>
-       <button type="submit" class="btn btn-primary">Add</button>
+       <button type="submit" v-if="!btn_update" @click.prevent="AddStudent" class="btn btn-primary">Add</button>
+       <button type="submit" v-if="btn_update" @click.prevent="UpdateStudent(Student.id)" class="btn btn-danger">Update</button>
      </form>
-     <Show :Table="G_Student" style="margin-top:20px" @delete="deleteid($event)"/>
+     <Show :Table="G_Student" style="margin-top:20px" @delete="deleteid($event)"  @edit="editid($event)"/>
     </div>
  </template>
  
@@ -39,16 +40,16 @@
    },
      data(){
        return {
-         toggle:false,
+         btn_update:false,
+         btn_id:"",
          Student:{
-           id:'',
-           Name:'',
-           Age:'',
-           Gender:'',
-           School:''
+             id:'',
+             Name:'',
+             Age:'',
+             Gender:'',
+             School:''
          },
          url:"http://localhost:3000/Student/",
-         //Get Students
          G_Student:[]
        }
      },
@@ -57,27 +58,46 @@
             const N_Student=this.G_Student
             this.G_Student=this.G_Student.filter(N_Student => N_Student.id != id);
         },
+        editid(id){
+          let url_id = `http://localhost:3000/Student/${id}`;
+          fetch(url_id)
+           .then(res => res.json())
+           .then(data =>{
+               this.Student.id=data.id,
+               this.Student.Name=data.Name,
+               this.Student.Age=data.Age,
+               this.Student.Gender=data.Gender,
+               this.Student.School=data.School,
+               this.btn_update=true
+           })
+           .catch(error => console.log(error))
+       },
+       UpdateStudent(id){
+        let url_id = `http://localhost:3000/Student/${id}`
+        this.Student.id=String(id)
+        alert(this.Student)
+        fetch(url_id,{method:'PUT',headers:{'Content-Type':'applicatio/json'},body:JSON.stringify(this.Student)})
+            .then(()=> {
+              this.G_Student.push(this.Student)
+              console.table(this.G_Student)
+            })
+            .catch(error => console.log(error))
+        this.btn_update=false
+       },
        AddStudent(){
         this.Student.id=String(this.G_Student.length+1),
-        fetch(this.url,{
-            method:'post',
-            header:{'Content-Type':'applicatio/json'},
-            body:JSON.stringify(this.Student)
-        })
-            .then(()=> this.$router.push('/'))
+        fetch(this.url,{method:'post',headers:{'Content-Type':'applicatio/json'},body:JSON.stringify(this.Student)})
+            .then(()=> this.$router.push("/"))
             .catch(error => console.log(error))
        },
-       show_input(){
-         this.toggle != this.toggle
-       }
-     },
+        },
      mounted(){
         fetch(this.url)
            .then(res => res.json())
            .then(data =>this.G_Student = data)
            .catch(error => console.log(error))   
-     }
- }
+     },
+}
  </script>
  <style scoped>
      .container{

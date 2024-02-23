@@ -2,17 +2,31 @@
   "Student": [
     {
       "id": "1",
-      "Name": "Zaakaria",
-      "Age": 12,
+      "Name": "Zakaria 12",
+      "Age": 2423,
       "Gender": "Male",
-      "School": "bfg"
+      "School": "Lycee al anwar 12"
     },
     {
       "id": "2",
-      "Name": "fdfd",
+      "Name": "scdc",
       "Age": 23,
+      "Gender": "Male",
+      "School": "fdvf"
+    },
+    {
+      "id": "3",
+      "Name": "cddv",
+      "Age": 12,
       "Gender": "Female",
-      "School": "bfgb"
+      "School": " gbgbg"
+    },
+    {
+      "id": "4",
+      "Name": "ffvf",
+      "Age": 12,
+      "Gender": "Female",
+      "School": "vfvvf"
     }
   ]
 }

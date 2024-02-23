@@ -18,7 +18,7 @@
          <td scope="row">{{G_Student.Age}}</td>
          <td scope="row">{{G_Student.Gender}}</td>
          <td scope="row">{{G_Student.School}}</td>
-         <td><button type="button"  class="btn btn-primary" :id="G_Student.id">Edit</button></td>
+         <td><button type="button"  class="btn btn-primary"  @click="this.$emit('edit',G_Student.id)">Edit</button></td>
          <td><button type="button"  class="btn btn-danger" @click="Delete(G_Student.id)">Delete</button></td>
       </tr>
   </tbody>
